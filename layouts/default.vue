@@ -1,11 +1,18 @@
 <template>
   <div id="particles-js">
+    <nav>
+        <button id="btnConectarWallet" class="btn" @click="contractConnect">Connet Wallet</button>
+    </nav>
     <main>
-        <button @click="contractConnect">Connet Wallet</button>
       <Nuxt />
     </main>
   </div>
 </template>
+<style>
+    #btnConectarWallet{
+        float: right;
+    }
+</style>
 <script>
     export default {
         Data() {

@@ -10,6 +10,11 @@ body {
     margin: 0;
     background-color: #333;
 }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 #particles-js{
     height: 100vh;
     max-height: 100vh;
@@ -39,3 +44,30 @@ a.nuxt-link-exact-active {
     color: var(--primary-color-active);
     text-decoration: underline;
 }
+nav{
+    padding: 6px 8px;
+}
+.btn{
+    font-size: 14px;
+    line-height: 55px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    height: 55px;
+    padding: 0 55px;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    display: inline-block;
+    background-image: -webkit-gradient(linear, left top, right top, from(#3967f5), color-stop(51%, #77f3fd), to(#3967f5));
+    background-image: linear-gradient(to right, #f5b339 0%, #ff8b0f 51%, #fffa02 100%);
+    border: none;
+    outline: none;
+    background-size: 200%;
+    transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -webkit-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+}
+
