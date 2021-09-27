@@ -1,5 +1,7 @@
 <template>
-  <span>oi</span>
+  <div>
+  
+  </div>
 </template>
 
 <script>

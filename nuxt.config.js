@@ -13,29 +13,48 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+    ],
+    script:[
+      {
+        src: "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.slim.js",
+        async: true,
+        type: "text/javascript"
+      },
+      {
+        src: "/js/shuffleLetters.js",
+        type: "text/javascript",
+        defer: true
+      },
+      {
+        src: "/js/particles.js",
+        type: "text/javascript",
+        defer: true
+      }
     ]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
-  ],
+  css: ['static/css/index.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-  ],
+  plugins: [],///['plugins/web3.js'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: [
-  ],
+  buildModules: [],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [
-  ],
-
+  modules: ["nuxt-web3"],
+  
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
+  build: {},
+  
+  loading: {
+    color: '#00c58e',
+    height: '6px',
+    continuous: true,
+    duration: 2000
   }
 }
