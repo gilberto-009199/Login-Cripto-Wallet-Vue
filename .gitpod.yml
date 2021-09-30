@@ -3,7 +3,7 @@ ports:
     onOpen:  open-preview
 tasks:
   - init: npm install
-    command: npm run dev
+    command: npm run build && npm run start
 vscode:
   extensions:
     - octref.vetur@0.23.0:TEzauMObB6f3i2JqlvrOpA==
