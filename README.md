@@ -2,6 +2,8 @@
  
 # Exchange
 
+![Tela inicial](./exchange.PNG)
+
 ## Build Setup
 
 ```bash
