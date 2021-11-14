@@ -47,7 +47,7 @@ export default {
   css: ['static/css/index.css','static/css/animate.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],///['plugins/web3.js'],
+  plugins: ['plugins/ethers.js'],///['plugins/web3.js'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -56,7 +56,7 @@ export default {
   buildModules: [],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ["nuxt-web3"],
+  modules: [],//["nuxt-web3"],
   
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
@@ -65,6 +65,6 @@ export default {
     color: '#00c58e',
     height: '6px',
     continuous: true,
-    duration: 2000
+    duration: 200
   }
 }
