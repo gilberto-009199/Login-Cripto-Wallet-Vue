@@ -14,8 +14,10 @@
                 console.log("Hello!",dados)
                 console.log(this.$Web3.ethers.utils);
                 console.log(this.$Web3.ethers.utils.arrayify)
-                
-                let nonce = this.$Web3.toHash('hello world');
+                // use a random one coming from your backend!
+                let nonce_fixed = 'h34234823j4iuh23r432ihjgyfudhr3843jnuidyhr98734uh';
+
+                let nonce = this.$Web3.toHash(nonce_fixed);
                 console.log("NONCE: ",nonce);
                 this.$Web3.getSigner().signMessage(nonce).then(result=>
                     console.log("signMessage: ",result))

@@ -4,70 +4,85 @@
 
 ![Tela inicial](./exchange.PNG)
 
-## Build Setup
 
-```bash
-# install dependencies
-$ npm install
+  Implementing authentication with noce , using ethers and vue:
 
-# serve with hot reload at localhost:3000
-$ npm run dev
++ [plugins/ethers.js](./plugins/ethers.js) - ethers.js proxy plugin code
++ [layouts/default.vue](./layouts/default.vue) - "Connect Wallet" button code
++ [pages/index.vue](./pages/index.vue) - Authentication code by name (Get the ``accounts-change`` emit)
 
-# build for production and launch server
-$ npm run build
-$ npm run start
+## How does authentication by nonce work?
 
-# generate static project
-$ npm run generate
-```
+ Here are the basic steps for authentication using the wallet:
 
-For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
+  1° Connecting to the Ethereum Network
+   + [Button Wallet](./layouts/default.vue#39) - Set providers
 
-## Special Directories
+    ```javascript
+        // MetaMask
+        if (window.ethereum) {
+            this.$Web3.setProvider(window.ethereum);
+        // Dapp para browsers Legacy...
+        } else if (window.web3) {
+            this.$Web3.setProvider(web3.currentProvider);
+        // Not wallet
+        } else {
 
-You can create the following extra directories, some of which have special behaviors. Only `pages` is required; you can delete them if you don't want to use their functionality.
+        }
+    ```
+   + [Get accounts](./layouts/default.vue#52) - Get accounts Wallet's
 
-### `assets`
+    ```javascript
+        this.acconts = await this.$Web3.getProvider().send("eth_requestAccounts")
+    ```
 
-The assets directory contains your uncompiled assets such as Stylus or Sass files, images, or fonts.
+  2° Generation of Nonce:
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/assets).
+   + [NONCE Generate](./pages/index.vue#18) - Generate nonce in backend! Not use fixed!
 
-### `components`
+    ```javascript
+        // use a random one coming from your backend!
+        let nonce_fixed = 'h34234823j4iuh23r432ihjgyfudhr3843jnuidyhr98734uh';
+    ```
 
-The components directory contains your Vue.js components. Components make up the different parts of your page and can be reused and imported into your pages, layouts and even other components.
+    On the server or service performing the authentication, you need to verify the signature to ensure the authenticity of the data. Then, you must save in one of your tables:
+        + wallet address
+        + original nonce
+        + signed nonce
+    It is important that you change the nonce at each login (security issue)
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/components).
+  3° Nonce Signature:
 
-### `layouts`
+   + [NONCE Signature](./pages/index.vue#19) - Signed nonce
 
-Layouts are a great help when you want to change the look and feel of your Nuxt app, whether you want to include a sidebar or have distinct layouts for mobile and desktop.
+    ```javascript
+        let nonce = this.$Web3.toHash(nonce_fixed);
+        console.log("NONCE: ",nonce);
+        this.$Web3.getSigner().signMessage(nonce).then(signed_nonce_front_end=>{
+            console.log("signNonce: ", signed_nonce_front_end)
+        });
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/layouts).
+    ```
+  4° Signature Verification:
+    
+   On the server or service performing the authentication, you need to verify the signature to ensure the authenticity of the data:
+
+    ```javascript
+
+        const { ethers } = require('ethers');
+
+        function verifySigned( signed_nonce_front_end , address ) {
+
+        //  ...... search addresss in db, get signed nonce
+            const signed_nonce_db = repository.find({ "address": address  }).first();
+            
+            const isAuth = signed_nonce_front_end.toLowerCase() === signed_nonce_db.toLowerCase();
+
+            return isAuth;
+        }
+    ```
 
 
-### `pages`
+  
 
-This directory contains your application views and routes. Nuxt will read all the `*.vue` files inside this directory and setup Vue Router automatically.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/get-started/routing).
-
-### `plugins`
-
-The plugins directory contains JavaScript plugins that you want to run before instantiating the root Vue.js Application. This is the place to add Vue plugins and to inject functions or constants. Every time you need to use `Vue.use()`, you should create a file in `plugins/` and add its path to plugins in `nuxt.config.js`.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/plugins).
-
-### `static`
-
-This directory contains your static files. Each file inside this directory is mapped to `/`.
-
-Example: `/static/robots.txt` is mapped as `/robots.txt`.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/static).
-
-### `store`
-
-This directory contains your Vuex store files. Creating a file in this directory automatically activates Vuex.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/store).
+  
