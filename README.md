@@ -1,6 +1,6 @@
  [![Testar no Browser](https://raw.githubusercontent.com/gilberto-009199/JAgendaWeb/master/gitpod.svg)](https://gitpod.io#https://github.com/gilberto-009199/Login-Cripto-Wallet-Vue)
  
-# Login metamask e trustwallet
+# Login metamask and trustwallet
 
 ![Tela inicial](./exchange.PNG)
 
@@ -10,6 +10,12 @@
 + [plugins/ethers.js](./plugins/ethers.js) - ethers.js proxy plugin code
 + [layouts/default.vue](./layouts/default.vue) - "Connect Wallet" button code
 + [pages/index.vue](./pages/index.vue) - Authentication code by name (Get the ``accounts-change`` emit)
+
+## How Run in Docker:
+
+```
+$ docker-compose up
+```
 
 ## How does authentication by nonce work?
 
