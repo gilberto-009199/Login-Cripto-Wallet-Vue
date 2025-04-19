@@ -5,6 +5,10 @@
 
 ![Tela inicial](./exchange.PNG)
 
+
+<img align="right" src="./assets/vuejs.svg" alt="Vue" width="32px"/>
+<img align="right" src="./assets/docker16x16.svg" alt="Docker" width="32px"/>
+<img align="right" src="./assets/metamask.svg" alt="MetaMask" width="32px"/>
   Implementing authentication with noce , using ethers and vue:
 
 + [plugins/ethers.js](./plugins/ethers.js) - ethers.js proxy plugin code
