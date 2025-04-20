@@ -6,6 +6,7 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt build && nuxt start",
+    "start:static": "nuxt generate && http-server dist -p $PORT",
     "generate": "nuxt generate"
   },
   "dependencies": {
@@ -16,5 +17,8 @@
     "particles.vue": "^2.18.2",
     "vue-web3": "^2.1.0",
     "web3": "^1.5.3"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
   }
 }
