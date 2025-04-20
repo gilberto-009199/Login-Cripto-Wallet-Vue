@@ -59,7 +59,16 @@ export default {
   modules: [],//["nuxt-web3"],
   
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  modern: true,
+  build: {
+    // habilite otimizações
+    extractCSS: true,
+    optimization: {
+      splitChunks: {
+        layouts: true
+      }
+    }
+  },
   
   loading: {
     color: '#00c58e',
