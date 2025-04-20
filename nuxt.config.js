@@ -65,7 +65,7 @@ export default {
     extractCSS: true,
     optimization: {
       splitChunks: {
-        layouts: true
+        chunks: 'all',
       }
     }
   },
