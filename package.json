@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
-    "start": "PORT=process.env.PORT nuxt start",
+    "start": "export PORT=process.env.PORT && nuxt build && nuxt start",
     "generate": "nuxt generate"
   },
   "dependencies": {
