@@ -1,0 +1,6 @@
+{
+  "name": "Login Crypto Wallet",
+  "description": "Login with Metamask and TrustWallet in Vuejs and ethers",
+  "keywords": ["node", "heroku", "ethers"],
+  "image": "heroku/nodejs"
+}
